@@ -1,0 +1,250 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  gap: 2rem;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+header h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.05em;
+}
+
+header p {
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+}
+
+/* Score Board */
+.score-board {
+  display: flex;
+  gap: 2rem;
+  padding: 1.5rem 3rem;
+  margin-bottom: 2rem;
+}
+
+.score-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 120px;
+}
+
+.score-label {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+
+.score-value {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.score-divider {
+  width: 2px;
+  background-color: var(--card-border);
+  border-radius: 2px;
+}
+
+/* Game Area */
+.game-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  width: 100%;
+}
+
+.choices-container {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.choice-btn {
+  background: var(--card-bg);
+  border: 2px solid var(--card-border);
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.choice-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.choice-btn:hover {
+  transform: translateY(-10px) scale(1.05);
+  border-color: var(--accent-color);
+  box-shadow: 0 20px 30px -10px rgba(59, 130, 246, 0.5);
+}
+
+.choice-btn:hover::before {
+  opacity: 1;
+}
+
+.choice-btn:active {
+  transform: translateY(-2px) scale(0.95);
+}
+
+.choice-icon {
+  font-size: 3rem;
+  margin-bottom: 0.25rem;
+  z-index: 1;
+}
+
+.choice-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  z-index: 1;
+}
+
+/* Result Display */
+.result-display {
+  text-align: center;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.result-text {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+  animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.result-text.win { color: var(--success); }
+.result-text.lose { color: var(--danger); }
+.result-text.draw { color: var(--warning); }
+
+.moves-display {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  animation: fadeIn 0.5s ease;
+}
+
+.move-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.move-icon {
+  font-size: 2rem;
+  background: var(--card-bg);
+  padding: 1rem;
+  border-radius: 50%;
+  border: 1px solid var(--card-border);
+}
+
+.vs-text {
+  font-weight: 700;
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+/* Controls */
+.controls {
+  margin-top: 2rem;
+}
+
+.reset-btn {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--card-border);
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-size: 1rem;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.reset-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  border-color: var(--text-secondary);
+}
+
+.reset-btn:active {
+  transform: scale(0.95);
+}
+
+/* Animations */
+@keyframes popIn {
+  0% { opacity: 0; transform: scale(0.5); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2.5rem;
+  }
+  
+  .score-board {
+    padding: 1rem 2rem;
+    gap: 1rem;
+  }
+  
+  .choice-btn {
+    width: 90px;
+    height: 90px;
+  }
+  
+  .choice-icon {
+    font-size: 2rem;
+  }
+  
+  .result-text {
+    font-size: 2rem;
+  }
+}
